@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Name: {{ country }}</h1>
+
+  <img src="{{ country.flag.url }}" class="img-responsive" style="width: 80px; float: left; margin-right: 10px;" /> 
+            
+  <h3>Composers</h3>
+  <hr>
+  <ul>
+  {% for copy in country.composer_set.all %}
+    <li><a href="{{ copy.get_absolute_url }}">{{ copy }}</a></li>
+  {% endfor %}
+  </ul>
+
+
+
+  <p><a href="{% url 'country_update' country.id %}">Update</a></p> 
+  <p><a href="{% url 'country_delete' country.id %}">Delete</a></p> 
+
+{% endblock %}

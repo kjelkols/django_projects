@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Kontrapunkt Hjem</h1>
+  <p>Welcome to Kontrapunkt, a website developed by <em>Kjell</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><strong>Countries:</strong> {{ num_country }}</li>
+    <li><strong>Composers:</strong> {{ num_composer }}</li>
+    <li><strong>Composition categories:</strong> {{ num_compositioncategory }}</li>
+  </ul>
+{% endblock %}

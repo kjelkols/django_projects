@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Composer List</h1>
+  {% if composer_list %}
+  <ul>
+    {% for composer in composer_list %}
+      <li>
+        <a href="{{ composer.get_absolute_url }}">{{ composer }} <img src="{{ composer.country.flag.url }}" width="20"> </img></a> 
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no countries.</p>
+  {% endif %}       
+{% endblock %}

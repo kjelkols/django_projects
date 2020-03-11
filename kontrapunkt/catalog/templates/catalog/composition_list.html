@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Composition List</h1>
+  {% if composition_list %}
+  <ul>
+    {% for composition in composition_list %}
+      <li>
+        <a href="{{ composition.get_absolute_url }}">{{ composition }} </img></a> 
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no countries.</p>
+  {% endif %}       
+{% endblock %}
