@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+#from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -18,6 +19,7 @@ def index(request):
     num_country = Country.objects.count()
     num_composer = Composer.objects.count()
     num_compositioncategory = CompositionCategory.objects.count()
+    num_composition = Composition.objects.count()
     
 #     # Number of visits to this view, as counted in the session variable.
 #     num_visits = request.session.get('num_visits', 0)
@@ -30,6 +32,7 @@ def index(request):
         'num_country': num_country,
         'num_composer': num_composer,
         'num_compositioncategory': num_compositioncategory,
+        'num_composition': num_composition,
 #         'num_visits': num_visits,
     }    
     
@@ -46,10 +49,10 @@ class CountryListView(generic.ListView):
 class CountryDetailView(generic.DetailView):
     model = Country    
     
-class CountryCreate(CreateView):
+class CountryCreate(generic.CreateView):
     model = Country
-    fields = '__all__'
-#    initial = {'date_of_death': '05/01/2018'}
+    fields = ['name', 'flag']
+#    fields = '__all__'
 
 class CountryUpdate(UpdateView):
     model = Country
@@ -73,7 +76,7 @@ class ComposerListView(generic.ListView):
 class ComposerDetailView(generic.DetailView):
     model = Composer    
     
-class ComposerCreate(CreateView):
+class ComposerCreate(generic.CreateView):
     model = Composer
     fields = '__all__'
 #    initial = {'date_of_death': '05/01/2018'}
@@ -97,7 +100,7 @@ class CompositionListView(generic.ListView):
 class CompositionDetailView(generic.DetailView):
     model = Composition    
     
-class CompositionCreate(CreateView):
+class CompositionCreate(generic.CreateView):
     model = Composition
     fields = '__all__'
 #    initial = {'date_of_death': '05/01/2018'}

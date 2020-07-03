@@ -20,12 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ')85!mk6%z994))l$2aff(=-e16alrg949v6082bs2k%pq6^!x+'
+#SECRET_KEY = ')85!mk6%z994))l$2aff(=-e16alrg949v6082bs2k%pq6^!x+'
+
+with open('/home/kjell/0000/projects/django_projects/kontrapunkt/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pluto.serverenmin.com']
+ALLOWED_HOSTS = ['pluto.serverenmin.com','pluto1.serverenmin.com']
 
 
 # Application definition
@@ -119,6 +122,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+#STATIC_ROOT = "home/kjell/0000/projects/django_projects/kontrapunkt/static"
 STATIC_URL = '/static/'
 
 #MEDIA_ROOT =  '/home/kjell/src_django/1000_django_store/kontrapunkt/media' #os.path.join(BASE_DIR, 'media') 

@@ -6,11 +6,16 @@
   <ul>
     {% for country in country_list %}
       <li>
-        <a href="{{ country.get_absolute_url }}">{{ country }}</a>
+        
+        <a href="{{ country.get_absolute_url }}"><img src="{{ country.flag.url }}" width="1em"></img> {{ country }}</a>
       </li>
     {% endfor %}
   </ul>
   {% else %}
     <p>There are no countries.</p>
-  {% endif %}       
+  {% endif %} 
+  <hr>
+  <a href="{% url 'country_create' %}">Create country</a>
+  
+        
 {% endblock %}
