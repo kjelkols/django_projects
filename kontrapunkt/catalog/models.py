@@ -1,22 +1,22 @@
 from django.db import models
 from django.urls import reverse # Used to generate URLs by reversing the URL patterns
 
-def helper_datefield_to_year (datefield):
-    result = str(datefield)
-    if result=='' or result=='None':
-      return '-'
-    else:
-      return datefield.year
+# def helper_datefield_to_year (datefield):
+#     result = str(datefield)
+#     if result=='' or result=='None':
+#       return '-'
+#     else:
+#       return datefield.year
 
-def helper_datefield_to_text (datefield):
-    result = str(datefield)
-    if result=='' or result=='None':
-        result = '-'
-    return result
+# def helper_datefield_to_text (datefield):
+#     result = str(datefield)
+#     if result=='' or result=='None':
+#         result = '-'
+#     return result
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
-    flag = models.ImageField(upload_to='images/', null=True, blank=True)
+    flag = models.ImageField(upload_to='images/', null=True, blank=True, default='a000.png') # http://pluto.serverenmin.com:8000/media???? http://pluto.serverenmin.com:8000/media/%23
     def get_absolute_url(self):
         return reverse('country_detail', args=[str(self.id)])
     def __str__(self):
@@ -26,21 +26,29 @@ class Country(models.Model):
 class Composer(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    date_of_birth = models.DateField(null=True, blank=True)
-    date_of_death = models.DateField('Died', null=True, blank=True)
+    year_of_birth = models.CharField(max_length=12, default='', help_text='Year as text') # E.g. "1732",  "1620-30", or "unknown"
+    year_of_death = models.CharField(max_length=12, default='', help_text='Year as text') # E.g. "1732",  "1620-30", or "unknown"
+
+#     date_of_birth = models.DateField(null=True, blank=True)
+#     date_of_death = models.DateField('Died', null=True, blank=True)
+
     country = models.ForeignKey('Country', on_delete=models.SET_NULL, null=True)
 #     class Meta:
 #         ordering = ['last_name', 'first_name']
-    def get_year_information(self):
-        return self.get_birth_year
+#     def get_year_information(self):
+#         return self.get_birth_year
         
     def get_lifespan (self):
-        return f'{helper_datefield_to_year(self.date_of_birth)}-{helper_datefield_to_year(self.date_of_death)}'
+#        return f'{helper_datefield_to_year(self.date_of_birth)}-{helper_datefield_to_year(self.date_of_death)}'
+        return f'{self.year_of_birth}-{self.year_of_death}'
         
-    def get_birth_text(self):
-        return helper_datefield_to_text (self.date_of_birth)
-    def get_death_text(self):
-        return helper_datefield_to_text (self.date_of_death)
+#     def get_birth_text(self):
+# #        return helper_datefield_to_text (self.date_of_birth)
+#       return self.year_of_birth
+#     def get_death_text(self):
+# #        return helper_datefield_to_text (self.date_of_death)
+#       return self.year_of_death
+
     def get_absolute_url(self):
         return reverse('composer_detail', args=[str(self.id)])
     def __str__(self):

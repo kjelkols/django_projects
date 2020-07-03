@@ -5,21 +5,8 @@
 
   <img src="{{ composer.flag.url }}" class="img-responsive" style="width: 80px; float: left; margin-right: 10px;" /> 
             
-  <p>
-  ZDate of birth: {{ composer.date_of_birth }}
-  </p>            
-  <p>
-  Date of birth text: {{ composer.get_birth_text }}
-  </p>            
-  <p>
-  Date of death: {{ composer.get_death_text }}
-  </p>            
-  <p>
-  Lifespan: {{ composer.get_lifespan }}
-  </p>            
-            
-            
-  <h3>Compositions</h3>
+              
+  <h3>Komposisjoner</h3>
   <hr>
     <ul>
   {% for copy in composer.composition_set.all %}

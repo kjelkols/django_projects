@@ -11,6 +11,15 @@
   <div>Composer: {{ composition.composer }}</div>
   <div>Composition category: {{ composition.compositioncategory }}</div>
 
+  <h3>Satser</h3>
+  <hr>
+    <ul>
+  {% for copy in composition.piece_set.all %}
+    <li>{{ copy }}</a></li>
+  {% endfor %}
+    </ul>
+
+
   <p><a href="{% url 'composition_update' composition.id %}">Update</a></p> 
   <p><a href="{% url 'composition_delete' composition.id %}">Delete</a></p> 
 
